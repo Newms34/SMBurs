@@ -1,0 +1,22 @@
+{
+  "name": "sm_backuprestore",
+  "version": "1.0.0",
+  "description": "Scrap Mechanic backup and restore utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Newms34/SMBurs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Newms34/SMBurs/issues"
+  },
+  "homepage": "https://github.com/Newms34/SMBurs#readme",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
+}

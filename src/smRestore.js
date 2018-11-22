@@ -1,5 +1,6 @@
-const fs = require('fs');
-    // readline = require('readline');
+const fs = require('fs'),
+    chalk = require('chalk');
+// readline = require('readline');
 
 // const rl = readline.createInterface({
 //     input: process.stdin,
@@ -7,10 +8,9 @@ const fs = require('fs');
 // });
 
 const doRest = (rl) => {
-    console.log('Scrap Mechanic Restore Utility\n-----------------\nThis process will restore a chosen save file in your Documents folder, in a subfolder "SMBackup", if it exists')
+    console.log('\n\n', chalk.bgYellow.black('Scrap Mechanic™'), '\nRestore Utility\n-----------------\nThis process will restore a chosen save file in your Documents folder, in a subfolder "SMBackup", if it exists')
     fs.readdir(process.env.APPDATA + '/Axolot Games/Scrap Mechanic/User', function(err, dir) {
-        console.log('appdata', dir, err)
-        console.log(`Available Users:\n`, dir.map((c, i) => (i + 1) + '.) ' + c).join('\n'));
+        console.log(`\nAvailable Users:\n`, dir.map((c, i) => chalk.cyan((i + 1) + '.) ' + c)).join('\n'));
         rl.question(`Pick a User number. Unsure? Leave blank, and we'll select the first one (which is probably you anyway!)\n`, (usrCh) => {
             // rl.close();
 
@@ -31,18 +31,21 @@ const doRest = (rl) => {
                     }
                     let docFoldr = fs.existsSync(process.env.USERPROFILE + '/documents') ? process.env.USERPROFILE + '/documents' : process.env.USERPROFILE + '/my documents';
                     fs.readdir(docFoldr, (errSD, saveOutDir) => {
-                    	//check if save out folder in docs exists
+                        //check if save out folder in docs exists
                         if (saveOutDir.indexOf('SMBackup') < 0) {
                             fs.mkdirSync(docFoldr + '/SMBackup');
                         }
                         // const theFile  =fs.readFileSync(process.env.APPDATA + '/Axolot Games/Scrap Mechanic/User/' + dir[usrCh - 1] + '/save/'+saveDir[svCh],'utf-8');
-                        if(!fs.existsSync(docFoldr+'/SMBackup/'+saveDir[svCh-1])){
-                        	console.log('ERROR:\nIt looks like that file was never backed up! We can\'t restore a file that has no backup!')
-                        }else{
-                        fs.copyFileSync(docFoldr+'/SMBackup/'+saveDir[svCh-1],process.env.APPDATA + '/Axolot Games/Scrap Mechanic/User/' + dir[usrCh - 1] + '/save/'+saveDir[svCh-1])
+                        if (!fs.existsSync(docFoldr + '/SMBackup/' + saveDir[svCh - 1])) {
+                            console.log(chalk.bgRed('ERROR:'), '\nIt looks like that file was never backed up! We can\'t restore a file that has no backup!')
+                        } else {
+                            fs.copyFileSync(docFoldr + '/SMBackup/' + saveDir[svCh - 1], process.env.APPDATA + '/Axolot Games/Scrap Mechanic/User/' + dir[usrCh - 1] + '/save/' + saveDir[svCh - 1])
                         }
-                        console.log(`World ${saveDir[svCh-1]} was restored!`);
-                        process.exit();
+                        console.log(chalk.green(`World ${saveDir[svCh-1]} was restored!`));
+                        setTimeout(function() {
+
+                            process.exit();
+                        }, 30000);
                     })
                 })
             })
