@@ -24,3 +24,6 @@ To use **SM Backup Restore**:
   - **When I run the Backup utility, it says my file doesn't exist!:** Then it probably doesn't. Sorry, but without knowing your specific computer setup, I can't help further.
   - **Do I *have* to install NodeJS to use this?:** Yes. Stop whining.
   - **Another error occured!:** That sucks, and I'm sorry, but could you send me a message regarding exactly what happened? Thanks!
+
+# EDIT:
+You no longer need NodeJS (tho you should still get it)! Just download the `.exe` and use it!
